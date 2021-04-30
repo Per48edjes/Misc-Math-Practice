@@ -34,9 +34,6 @@ import math
 
 
 class CakeSlice:
-
-    TOLERANCE = 0.01
-
     def __init__(self, total_cake_slices: int, cake_radius: float):
         if total_cake_slices < 3:
             raise ValueError("There must be at least three total cake slices!")
@@ -89,12 +86,16 @@ class CakeSlice:
         self._slice_area = self.triangle_area + self.rim_area
         return self._slice_area
 
-    # TODO: Fix float precision; method fails tests at large scales
-    def knife_angles(self, precision: float = 0.001) -> float:
+    # TODO: This needs an overhaul, especially for the test/edge cases
+    def knife_angles(self, precision: float = 0.001, tolerance: float = 0.01) -> tuple:
         """
         Returns the knife angles which divides the cake slice into equal parts
         and that conforms to the requirements in the module docstring
         """
+        if precision > tolerance / 1e1:
+            raise ValueError(
+                "Precision should be at least an order of magnitude less than tolerance!"
+            )
 
         def piece_details(beta: float) -> tuple:
             """
@@ -117,15 +118,17 @@ class CakeSlice:
         beta = self.corner_angle
         piece_area, gamma = piece_details(beta)
         delta = piece_area - equal_piece_area
+        within_tolerance = tolerance * math.pi * self._cake_radius ** 2
 
-        while delta > self.TOLERANCE:
+        while delta > within_tolerance:
             beta -= precision
             piece_area, gamma = piece_details(beta)
             delta = piece_area - equal_piece_area
 
-        return beta, gamma, piece_area
+        second_piece_area = self.slice_area - piece_area
+        return beta, gamma, piece_area, second_piece_area
 
 
 if __name__ == "__main__":
-    slice_of_cake = CakeSlice(4, 8)
-    print(slice_of_cake.knife_angles(0.001))
+    slice_of_cake = CakeSlice(3, 1000)
+    print(slice_of_cake.knife_angles())

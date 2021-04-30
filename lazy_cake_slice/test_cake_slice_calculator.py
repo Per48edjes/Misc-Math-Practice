@@ -31,8 +31,12 @@ class TestCakeSlice:
     def test_total_cake_area_from_slice(self, slice_of_cake):
         total_cake_area = math.pi * (slice_of_cake._cake_radius ** 2)
         assert (
-            slice_of_cake.slice_area * slice_of_cake._total_cake_slices
-            == total_cake_area
+            abs(
+                slice_of_cake.slice_area * slice_of_cake._total_cake_slices
+                - total_cake_area
+            )
+            # Precise to thousandths of area units
+            < 0.001
         )
 
     def test_total_rim_area_from_slice(self, slice_of_cake):
@@ -45,9 +49,19 @@ class TestCakeSlice:
         )
 
     def test_knife_angles_valid(self, slice_of_cake):
-        beta, gamma, _ = slice_of_cake.knife_angles()
+        beta, gamma, _, _ = slice_of_cake.knife_angles()
         assert beta + gamma + slice_of_cake.point_angle
 
-    def test_piece_areas_equal(self, slice_of_cake):
-        _, _, piece_area = slice_of_cake.knife_angles()
-        assert abs((slice_of_cake.slice_area / 2) - piece_area) < CakeSlice.TOLERANCE
+    @pytest.mark.parametrize("precision, tolerance", [(0.001, 0.01)])
+    def test_piece_areas_equal(self, slice_of_cake, precision, tolerance):
+        _, _, piece_area, _ = slice_of_cake.knife_angles(
+            precision=precision, tolerance=tolerance
+        )
+        tolerance *= math.pi * slice_of_cake._cake_radius ** 2
+        error = abs((slice_of_cake.slice_area / 2) - piece_area)
+        assert error < tolerance
+
+    @pytest.mark.parametrize("precision, tolerance", [(1.0, 0.01), (0.009, 0.01)])
+    def test_precision_tolerance_exception(self, slice_of_cake, precision, tolerance):
+        with pytest.raises(ValueError):
+            slice_of_cake.knife_angles(precision, tolerance)
