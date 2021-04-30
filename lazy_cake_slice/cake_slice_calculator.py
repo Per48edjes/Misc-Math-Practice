@@ -6,7 +6,7 @@ friend. We could bisect the narrow, "point" angle as a reasonable person might,
 but let's say we're being lazy and we want don't want to cut the slice of cake
 along its long axis.
 
-The associated figure shows the a stylized version of the cut we want to make,
+The associated figure shows a stylized version of the cut we want to make,
 which should adhere to the following points:
 
 1. The cut equally divides the slice of cake into two pieces of equal size
