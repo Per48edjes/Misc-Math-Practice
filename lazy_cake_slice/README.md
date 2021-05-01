@@ -6,12 +6,12 @@ arc and straight edge and cutting through in a straight line to the opposite
 straight edge?"
 
 This is convoluted to understand in words, so the graphic below should help
-illuminate what I'm trying to understand.
+illuminate what I'm trying to determine.
 
 ![Stylized Example of Lazy Cake Slice](./angle_definitions.png)
 
 The grey line is an example of one such cut. The objective is to choose a cut
-(parameterized by angles β and ɣ) such that the area of the two pieces (denoted
+(parameterized by angles β) such that the area of the two pieces (denoted
 by the green and red arrows) are equal.
 
 See the `cake_slice_calculator.py` docstring for more context.
