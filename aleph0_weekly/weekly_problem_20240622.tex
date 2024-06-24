@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\title{$\aleph_{0}$ Weekly Problem}
+\author{Ravi Dayabhai \and Conrad Warren}
+\date{2024-06-22}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem}
+
+The product of three positive reals is $1$. Their sum is greater than the sum of their reciprocals. Prove that exactly one of these numbers is strictly greater than $1$.
+
+\section*{Solution}
+
+\begin{proof}
+  Let $a$, $b$, and $c$ be the three positive reals. We are given that $abc = 1$ and $a + b + c > \frac{1}{a} + \frac{1}{b} + \frac{1}{c}$. 
+  We want to show that exactly one of $a$, $b$, or $c$ is strictly greater than $1$. To do that we will show:
+
+\begin{enumerate}
+    \item \textbf{At least one of $a$, $b$, or $c$ is strictly greater than 1.}
+    
+    Assume, for the sake of contradiction, that $a \leq 1$, $b \leq 1$, and $c \leq 1$. Then $\frac{1}{a} \geq 1$, $\frac{1}{b} \geq 1$, and $\frac{1}{c} \geq 1$. Therefore,
+
+    \[
+      a + b + c \leq 3 \quad \text{and} \quad \frac{1}{a} + \frac{1}{b} + \frac{1}{c} \geq 3.
+    \]
+
+    This contradicts the given condition $a + b + c > \frac{1}{a} + \frac{1}{b} + \frac{1}{c}$. Hence, at least one of $a$, $b$, or $c$ must be strictly greater than 1.
+    
+    \item \textbf{At most one of $a$, $b$, or $c$ is strictly greater than 1.}
+    
+    Assume, for the sake of contradiction, that more than one of $a$, $b$, or $c$ is strictly greater than 1. Immediately a contradiction is reached if all three of $a$, $b$, and $c$ are strictly greater than 1, since their product would be greater than 1.
+
+    For the case when two of $a$, $b$, and $c$ are strictly greater than 1, we can assume without loss of generality that $a > 1$ and $b > 1$. Therefore, it must be the case that $c = \frac{1}{ab} < 1$. Substituting $c$ in the given condition $a + b + c > \frac{1}{a} + \frac{1}{b} + \frac{1}{c}$ gives $a + b + \frac{1}{ab} > \frac{1}{a} + \frac{1}{b} + ab$. Rearranging the inequality, we get
+
+    \begin{align*}
+      a + b + \frac{1}{ab} - \frac{1}{a} - \frac{1}{b} - ab &> 0 \\
+      \left(a - \frac{1}{a}\right) + \left(b - \frac{1}{b}\right) + \left(\frac{1}{ab} - ab\right) &> 0\\
+      \frac{a^2b - b}{ab} + \frac{b^2a - a}{ab} + \frac{1 - a^2b^2}{ab} &> 0\\
+      \frac{a^2b + b^2a - a - b}{ab} &> -\frac{1 - a^2b^2}{ab}\\
+      ab(a + b) - (a + b) &> -(1 - ab)(1 + ab)\\
+      (a + b)(ab - 1) &> (ab - 1)(1 + ab)\\
+      a + b &> ab + 1 \\
+      0 &> ab - a - b + 1.
+    \end{align*}
+
+    This is the contradiction we desire, because $ab - a - b + 1 = (a - 1)(b - 1) \geq 0$. Therefore, it is also not possible for two of $a$, $b$, and $c$ to be strictly greater than 1. Since it is not possible for two or three of $a$, $b$, and $c$ to be strictly greater than 1, then at most one of $a$, $b$, or $c$ is strictly greater than 1.
+
+\end{enumerate}
+
+Combining the results of parts 1 and 2, we conclude that exactly one of $a$, $b$, or $c$ is strictly greater than 1.
+  
+\end{proof}
+\end{document}
