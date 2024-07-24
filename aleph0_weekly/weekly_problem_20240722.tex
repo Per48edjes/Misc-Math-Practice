@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+
+\title{$\aleph_{0}$ Weekly Problem}
+\author{Ravi Dayabhai \& Conrad Warren}
+\date{2024-07-22}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem}
+
+Show that if $n$ has an odd divisor greater than $1$, then $2^{n} + 1$ is not prime.
+
+\section*{Solution}
+
+\begin{proof}
+
+  We assume $n$ has an odd divisor greater than $1$ and show that $2^{n} + 1$ is not prime.
+
+  By the Fundamental Theorem of Arithmetic, $n$ has a unique prime factorization $n = 2^{k_{0}}3^{k_{1}}5^{k_{2}} \cdots $. 
+  Let $P_{\text{odd}} = 3^{k_{1}}5^{k_{2}} \cdots > 1$ and $b = 2^{2^{k_{0}}}$, then $2^{n} = b^{P_{\text{odd}}}$.
+  Notice that $P_{\text{odd}}$ is odd. Therefore, $2^{n} + 1 = b^{P_{\text{odd}}} + 1 \equiv -1 + 1 \equiv 0 \pmod{b + 1}$.
+  Hence, if $n$ has an odd divisor greater than $1$, then $2^{n} + 1$ is not prime.
+  
+\end{proof}
+\end{document}
