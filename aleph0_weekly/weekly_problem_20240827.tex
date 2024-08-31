@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\allowdisplaybreaks
+
+\title{$\aleph_{0}$ Weekly Problem}
+\author{Conrad Warren \and Ravi Dayabhai}
+\date{2024-08-27}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem}
+
+Show that each number in the sequence $49, 4489, 444889, \ldots$ is a perfect square.
+
+\section*{Solution}
+
+\begin{proof}
+
+The $n$th number in the sequence is given by $\left(\sum_{i=1}^{2n}4 \cdot 10^{i-1}\right) + \left(\sum_{i = 1}^{n} 4\cdot 10^{i-1}\right) + 1$. We will show that for any $n \in \lbrace 1, 2, \ldots \rbrace$, the $n$th term in the sequence equals a perfect square, namely, $(\left(\sum_{i = 1}^{n} 6 \cdot 10^{i-1} \right) + 1)^2$.
+    
+    \begin{align*}
+    \left(\left(\sum_{i = 1}^{n} 6 \cdot 10^{i-1}\right) + 1\right)^2 &= \left(\sum_{i=1}^{2n}4 \cdot 10^{i-1}\right) + \left(\sum_{i = 1}^{n} 4\cdot 10^{i-1}\right) + 1\\
+    \left(\sum_{i = 1}^{n} 6 \cdot 10^{i-1}\right)^2 + 2\cdot\left(\sum_{i = 1}^{n} 6 \cdot 10^{i-1}\right) + 1 &= \sum_{i=1}^{2n}4 \cdot 10^{i-1} + \sum_{i = 1}^{n} 4\cdot 10^{i-1} + 1\\
+    \left(\sum_{i = 1}^{n} 6 \cdot 10^{i-1}\right)^2 + \sum_{i = 1}^{n} 8 \cdot 10^{i-1} &= \sum_{i=1}^{2n}4 \cdot 10^{i-1}\\
+    36\left(\sum_{i = 1}^{n}10^{i-1}\right)^2 + 8\sum_{i = 1}^{n}10^{i-1} &= 4\sum_{i=1}^{2n}10^{i-1}\\
+    9\left(\sum_{i = 1}^{n}10^{i-1}\right)^2 + 2\sum_{i = 1}^{n}10^{i-1} &= \sum_{i=1}^{2n}10^{i-1}\\
+    \displaybreak\\
+    9\left(\sum_{i = 1}^{n}10^{i-1}\right)^2 + 2\sum_{i = 1}^{n}10^{i-1} &= 10^n\sum_{i=1}^{n}10^{i-1} + \sum_{i=1}^{n}10^{i-1}\\
+    9\left(\sum_{i = 1}^{n}10^{i-1}\right)^2 + \sum_{i = 1}^{n}10^{i-1} &= 10^n\sum_{i=1}^{n}10^{i-1}\\
+    9\left(\sum_{i = 1}^{n}10^{i-1}\right) + 1 &= 10^n\\
+    9\left(\sum_{i = 1}^{n}10^{i-1}\right) &= 10^n - 1 = 9\left(\sum_{i = 1}^{n}10^{i-1}\right)
+    \end{align*}
+
+By establishing the above equality, we have shown, for any index $n \in \lbrace 1, 2, \ldots \rbrace$, that the $n$th number in the given sequence is a perfect square of the form $(\left(\sum_{i = 1}^{n} 6 \cdot 10^{i-1} \right) + 1)^2$.
+
+\end{proof}
+\end{document}
