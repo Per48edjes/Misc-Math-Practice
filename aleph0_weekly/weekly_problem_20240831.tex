@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem*{lemma}{Lemma}
+\DeclareMathOperator{\lcm}{lcm}
+
+\title{$\aleph_{0}$ Weekly Problem}
+\author{Ravi Dayabhai \and Conrad Warren}
+\date{2024-08-31}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem}
+
+Prove that if you add up the reciprocals of a sequence of consecutive positive integers, the numerator of the sum (in lowest terms) will always be odd. For example, $\frac{1}{7} + \frac{1}{8} + \frac{1}{9} = \frac{191}{504}$.
+
+\section*{Solution}
+
+First we prove a lemma that will be helpful later:
+
+\begin{lemma}
+  In any sequence of consecutive positive integers $(a_{1}, a_{2}, \ldots, a_{n})$, there is a distinct integer $a_{*}$ with the highest power of $2$ in its prime factorization.
+\end{lemma}
+
+\begin{proof}
+  % TODO: Need to prove the above lemma here.
+\end{proof}
+ 
+Now we can turn our attention to proving the original claim stated by the \textbf{Problem}:
+
+\begin{proof}
+
+  Consider any sequence of positive integers $(a_{1}, a_{2}, \ldots, a_{n})$.
+  Let $N = \prod_{i=1}^{n} a_{i}$.
+  Then the sum of the reciprocals of this sequence of positive integers can be expressed as:
+
+  \begin{align*}
+    \frac{1}{a_1} + \frac{1}{a_2} + \ldots \frac{1}{a_n} = \frac{\frac{N}{a_1} + \frac{N}{a_2} + \ldots + \frac{N}{a_n}}{N}.
+  \end{align*}
+
+  Since $\lcm(a_{1}, a_{2}, \ldots, a_{n}) \cdot \gcd (a_{1}, a_{2}, \ldots, a_{n}) = N$,
+  the numerator in the resultant fraction expressed in lowest terms, $S$, is:
+
+  \begin{align*}
+    S = \frac{N^{\prime}}{a_1} + \frac{N^{\prime}}{a_2} + \ldots + \frac{N^{\prime}}{a_n},
+  \end{align*}
+
+  where $N^{\prime} = \frac{N}{\gcd(a_{1} , a_{2}, \ldots, a_{n})}$. 
+
+  By the Fundamental Theorem of Arithmetic, $\frac{N}{a_i}$ has a unique prime factorization, hence $\frac{N}{a_i} = 2^{m_{i,1}}3^{m_{i,2}}5^{m_{i,3}}\cdots$, for all $i \in \lbrace 1, 2, \ldots, n \rbrace$.
+  We can express $N$ similarly: $N = 2^{M_1}3^{M_2}5^{M_3}\cdots$.
+  
+  What remains to be shown is that there exists exactly \textit{one} \textbf{odd} summand $\frac{N^{\prime}}{a_i}$ for all $i \in \lbrace 1, 2, \ldots, n \rbrace$, thereby resulting in \textbf{odd} $S$. 
+
+  Consider $\frac{N}{a_{*}} = 2^{m_{*,1}}3^{m_{*,2}}5^{m_{*,3}}\cdots$ such that $m_{*,1} = \min \lbrace m_{i, 1} | i \in \lbrace 1, 2, \ldots, n \rbrace \rbrace$.
+  Note that $a_{*}$ is unique by the lemma established above.
+  Because $2^{m_{*,1}}$ can be factored out of all terms $\frac{N}{a_{i}}$, it is a divisor of $\gcd(a_{1} , a_{2}, \ldots, a_{n}$).
+  It follows that $\frac{N^{\prime}}{a_{*}}$ is the only odd summand of $S$.
+
+\end{proof}
+
+\end{document}
