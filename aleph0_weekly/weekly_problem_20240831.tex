@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{amsmath,amssymb,amsthm}
 
+\newtheorem*{claim}{Claim}
 \newtheorem*{lemma}{Lemma}
 \DeclareMathOperator{\lcm}{lcm}
 
@@ -18,47 +19,52 @@ Prove that if you add up the reciprocals of a sequence of consecutive positive i
 
 \section*{Solution}
 
-First, we prove a lemma that will be helpful later:
+First, we prove the following lemma that will be helpful later.
 
 \begin{lemma}
-  In any sequence of consecutive positive integers $(a_{1}, a_{2}, \ldots, a_{n})$, there is a distinct integer $a_{*}$ with the highest power of $2$ in its prime factorization.
+  In any sequence of consecutive positive integers $(a_{1}, a_{2}, \ldots, a_{n})$, there is a unique integer $a_{*}$ with the highest power of $2$ in its prime factorization.
 \end{lemma}
 
 \begin{proof}
   Suppose, for the sake of finding a contradiction, that there exists at least two positive integers in the consecutive positive integer sequence $(a_{1}, a_{2}, \ldots, a_{n})$ sharing a maximal power of $2$ in their prime factorizations. 
-  Without loss of generality, let $a_j$ and $a_k$ (and $j < k$, without loss of generality) both have the same highest power of $2$ in their prime factorizations, say $2^{m_{\dagger}}$, and no intervening $a_l$ (i.e., $j < l < k$) having a higher power of $2$ in its prime factorization.
-  Then, $a_{j} = 2^{m_{\dagger}}d$ such that $d$ is odd (since it is the product of all odd primes dividing $a_{j}$) and $a_{k} = 2^{m}(d + 1)$.
-  But $d+1$ is even and factoring out a $2$ from $d+1$ gives $a_{k} = 2^{m_{\dagger} + 1} \left(\frac{d + 1}{2}\right)$.
-  This results in a contradiction since it is assumed that both $a_{j}$ and $a_{k}$ have the same, highest power of $2$ in the prime factorizations among all $a_i$.
-  Having found a contradiction, we have proven the lemma.
+
+  Without loss of generality, let $a_j$ and $a_k$ (with $j < k$) have the same, highest power of $2$ in their prime factorizations (say, $2^{m}$) and all intervening $a_l$ (for all $l$ such that $j < l < k$) having a smaller power of $2$ in its prime factorization.
+  Then, $a_{j} = 2^{m}d$ such that $d$ is odd (since it is the product of only odd integers) and $a_{k} = 2^{m}(d + 1)$.
+
+  $d+1$ is even and factoring out a $2$ from $d+1$ gives $a_{k} = 2^{m + 1} \left(\frac{d + 1}{2}\right)$, where $\frac{d + 1}{2}$ is an integer.
+  Herein lies a contradiction --- it is assumed that $a_{j}$ and $a_{k}$ have the same, highest power of $2$ among the prime factorizations of all $a_i$ in the sequence.
+
+  Reaching a contradiction, we have proven the lemma.
 \end{proof}
  
-Next, we turn our attention to proving the original claim stated by the \textbf{Problem}:
+Next, we turn our attention to proving the original claim stated by the \textbf{Problem}.
+
+\begin{claim}
+  If you add up the reciprocals of a sequence of consecutive positive integers, the numerator of the sum (in lowest terms) will always be odd.
+\end{claim}
+
 
 \begin{proof}
 
-  Consider any sequence of positive integers $(a_{1}, a_{2}, \ldots, a_{n})$.
-  Let $N = \prod_{i=1}^{n} a_{i}$.
-  Then the sum of the reciprocals of this sequence of positive integers can be expressed as:
+  Consider any sequence of consecutive positive integers $(a_{1}, a_{2}, \ldots, a_{n})$.
+  Let $N = \prod_{i=1}^{n} a_{i}$. Then, 
 
   \begin{align*}
     \frac{1}{a_1} + \frac{1}{a_2} + \ldots \frac{1}{a_n} = \frac{\frac{N}{a_1} + \frac{N}{a_2} + \ldots + \frac{N}{a_n}}{N}.
   \end{align*}
 
-  Letting $\lcm(a_{1}, a_{2}, \ldots, a_{n}) = N^{\prime}$, the numerator in the resultant fraction expressed in lowest terms, $S$, is:
+  Letting $\lcm(1, a_{1}, a_{2}, \ldots, a_{n}) = N^{\prime}$, the numerator, $S$, in the resultant fraction expressed in lowest terms is:
 
   \begin{align*}
     S = \frac{N^{\prime}}{a_1} + \frac{N^{\prime}}{a_2} + \ldots + \frac{N^{\prime}}{a_n}.
   \end{align*}
 
-  By the Fundamental Theorem of Arithmetic, $\frac{N}{a_i}$ has a unique prime factorization, hence $\frac{N}{a_i} = 2^{m_{i,1}}3^{m_{i,2}}5^{m_{i,3}}\cdots$, for all $i \in \lbrace 1, 2, \ldots, n \rbrace$.
-  We can express $N$ similarly: $N = 2^{M_1}3^{M_2}5^{M_3}\cdots$.
-  
-  What remains to be shown is that there exists exactly one odd summand (of $S$) $\frac{N^{\prime}}{a_i}$ for all $i \in \lbrace 1, 2, \ldots, n \rbrace$, thereby resulting in odd $S$. 
+  By the Fundamental Theorem of Arithmetic, each $\frac{N}{a_i}$ has a unique prime factorization; hence $\frac{N}{a_i} = 2^{m_{i,1}}3^{m_{i,2}}5^{m_{i,3}}\cdots$ for all $i \in \lbrace 1, 2, \ldots, n \rbrace$.
+  What remains to be shown is that there exists exactly one odd summand (of $S$), $\frac{N^{\prime}}{a_{*}}$, implying $S$ is odd.
 
-  Consider $\frac{N}{a_{*}} = 2^{m_{*,1}}3^{m_{*,2}}5^{m_{*,3}}\cdots$ such that $m_{*,1} = \min \lbrace m_{i, 1} | i \in \lbrace 1, 2, \ldots, n \rbrace \rbrace$.
-  Note that $a_{*}$ is unique by the lemma established above.
-  Because $2^{m_{*,1}}$ can be factored out of all $\frac{N}{a_{i}}$, it follows that $\frac{N^{\prime}}{a_{*}}$ is the only odd summand of $S$, yielding odd $S$.
+  Consider $\frac{N}{a_{*}} = 2^{m_{*,1}}3^{m_{*,2}}5^{m_{*,3}}\cdots$, where $a_{*}$ is the member of the sequence with the highest power of $2$ in its prime factorization. Note that $a_{*}$ is unique by the lemma established above.
+  This implies a unique $m_{*,1} = \min \lbrace m_{i, 1} \mid i \in \lbrace 1, 2, \ldots, n \rbrace \rbrace$.
+  Because $2^{m_{*,1}}$ can be factored out of all $\frac{N}{a_{i}}$, it follows that $\frac{N^{\prime}}{a_{*}}$ is the only odd summand of $S$, giving odd $S$.
 
 \end{proof}
 
