@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\title{$\aleph_{0}$ Weekly Problem}
+\author{Ravi Dayabhai \and Conrad Warren}
+\date{2024-08-11}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem}
+
+Sonia walks up an escalator which is going up. When she walks at one step per second, it takes her 20 steps to get to the top. If she walks at two steps per second, it takes her 32 steps to get to the top. She never skips over any steps. How many steps does the escalator have?
+
+\section*{Solution}
+
+Let $S$ be the number of steps the escalator spans and $v_{e}$ the speed (in steps per second) at which the escalator is moving. 
+
+When Sonia walks up the escalator $1$ step per second, she only has to move $20$ steps. This means it takes her $t_{1} = \frac{20}{1} = 20$ seconds to cover $S$ steps. Similarly, when she moves at a rate of $2$ steps per second, she only has to move $32$ steps; in this scenario, she is on the escalator for $t_2 = \frac{32}{2} = 16$ seconds.
+
+
+Since the number of steps the escalator spans is constant, we can solve for $v_{e}$ (in steps per second):
+
+\begin{align*}
+    S = 20 + t_{1}v_{e} &= 32 + t_{2}v_{e}\\
+    20 + 20v_{e} &= 32 + 16v_{e}\\
+    v_{e} &= 3
+\end{align*}
+
+Solving for $S$ (in steps) gives us the number of steps spanned by the escalator:
+
+\begin{align*}
+    S &= 20 + 20v_{e} = 32 + 16v_{e}\\
+      &= \boxed{80}
+\end{align*}
+
+\end{document}
