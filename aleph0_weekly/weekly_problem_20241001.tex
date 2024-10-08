@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\title{$\aleph_{0}$ Weekly Problem}
+\author{Ravi Dayabhai \and Conrad Warren}
+\date{2024-10-01}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem}
+
+Each of the numbers $1$ to $10^{6}$ is repeatedly replaced by its digital sum until we reach $10^{6}$ one-digit numbers. 
+Will these have more 1’s or 2’s?
+
+\section*{Solution}
+
+Repeatedly taking the digital sum of a positive integer $k$ is equivalent to taking $k$'s digital root, which equals $k \pmod{9}$ unless $k \equiv 0 \pmod{9}$, in which case the digital root is $9$.
+
+Since $10^{6} \equiv 1 \pmod{9}$ and there are as many integers congruent to $1$ as to $2$ modulo $9$ in the range $1$ to $10^{6}-1$ (inclusive), there is one more $1$ than $2$ in the final sequence of one-digit numbers. Hence, there are more $1$'s than $2$'s.
+
+\end{document}
