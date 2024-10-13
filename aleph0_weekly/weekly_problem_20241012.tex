@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem*{lemma}{Lemma}
+
+\title{$\aleph_{0}$ Weekly Problem}
+\author{Conrad Warren \and Ravi Dayabhai}
+\date{2024-10-12}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem}
+
+Prove that there is no polynomial $f(x)$ with integer coefficients, so that $f(7)=11$ and $f(11)=13$.
+
+\section*{Solution}
+
+First, we prove the following lemma that will be helpful later.
+
+\begin{lemma}
+    Let $f(x)$ be a polynomial with integer coefficients, and let $s$ and $t$ be integers. Then, $f(s) - f(t)$ is divisible by $s - t$.
+\end{lemma}
+
+\begin{proof}
+
+    Let \(f(x) = a_{n}x^n + a_{n-1}x^{n-1} + a_{n-2}x^{n-2} + \cdots + a_{0}x^{0}\) where $a_i \in \mathbb{Z}$ for all $i \in \lbrace 0, \ldots, n \rbrace$.
+    Then,
+        \[f(s) - f(t) = a_{n}(s^n - t^n) + a_{n-1}(s^{n-1}-t^{n-1}) + \cdots + a_{1}(s - t)\text{.}\]     
+
+    Notice that \((s^k - t^k) = (s - t)(s^{k-1}t^{0} + s^{k-2}t^{1} + s^{k-3}t^{2} + \ldots + s^{0}t^{k-1})\) for all positive integers \(k\). Therefore, $f(s) - f(t)$ is divisible by $s - t$. 
+
+\end{proof}
+
+Now we turn our attention to proving that there is no polynomial $f(x)$ with integer coefficients, so that $f(7)=11$ and $f(11)=13$.
+
+\begin{proof}
+
+    Suppose, for sake of finding a contradiction, that there did exist a polynomial $f(x)$ having all integer coefficients such that $f(7)=11$ and $f(11)=13$. But this immediately contradicts the lemma above, as $f(7) - f(11) = -2$ is not divisible by $7 - 11 = 4$.
+
+\end{proof}
+
+\end{document}
