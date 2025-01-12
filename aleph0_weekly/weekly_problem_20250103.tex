@@ -1,0 +1,211 @@
+\documentclass{article}
+\usepackage{graphicx,amsfonts,amsmath,amssymb,amsthm}
+\usepackage[table, xcdraw]{xcolor}
+\usepackage{tabularx}
+\usepackage{array,caption}
+\usepackage{float}
+
+\title{$\aleph_{0}$ Weekly Problem}
+\author{Conrad Warren \and Ravi Dayabhai}
+\date{2025-01-03}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem}
+
+In how many ways can you tile a $3 \times n$ rectangle by $2 \times 1$ dominoes?
+
+\section*{Solution}
+
+We claim that, for $n \in \mathbb{N}$, the number of ways to tile a $3 \times n$ rectangle using $2 \times 1$ dominoes is given by the recurrence $f(n)$ such that:
+
+$$
+f(n) = 
+\begin{cases}
+    0, & \text{if } n\text{ is odd},\\
+    1, & \text{if } n = 0,\\
+    4f(n-2) - f(n-4) & \text{otherwise.}
+\end{cases}
+$$
+
+\begin{proof}
+
+    First, notice that for odd choices of $n$, it is impossible to tile the rectangular grid since the placement of a tile reduces the remaining squares in the grid by $2$. A successful tiling reduces the remaining squares to $0$, but repeated subtraction of $2$ grid squares (i.e., dividing $n$ by $2$) never results in a remainder of $0$. Secondly, there is trivially only $1$ way to tile the (nonexistent) grid when $n = 0$: use $0$ dominoes.
+    
+    After establishing an additional base case, we will proceed by strong induction to prove the more general case (i.e., when $n > 0$ and $n$ is even). Namely, we will show that the number of tilings of a $3 \times n$ rectangle using $2 \times 1$ dominoes (referred to as simply ``dominoes'' in the remainder of this document) is given by:
+
+    $$
+    f(n) = 3f(n-2) + 2\sum_{i = 4}^{n}f(n-i),
+    $$
+
+    \noindent assuming all $f(n - i)$ correctly counts the number of tilings on a grid sized $3 \times (n - i)$, for all integers $i$ where $0 < i \leq n$.
+
+    For the purposes of the discussion below, we \textbf{zero}-index columns from the \textbf{left} when the grid has $3$ rows and $n$ columns.
+
+    \vspace{\baselineskip}
+    \noindent \textbf{Base Cases:}
+    \vspace{\baselineskip}
+    
+    In addition to the establishment of the base cases above, the following figures are sufficient to show that $f(2) = 3$:
+
+    \begin{figure}[H]
+        \centering
+
+        \begin{minipage}[t]{0.3\textwidth}
+            \centering
+            \setlength{\tabcolsep}{1pt}
+            \renewcommand{\arraystretch}{0.7}
+            \resizebox{\textwidth}{!}{
+                $\begin{array}{|c|c|}
+                \hline
+                \cellcolor{red!60} & \cellcolor{red!60} \\ \hline
+                \cellcolor{blue!60} & \cellcolor{blue!60} \\ \hline
+                \cellcolor{green!60} & \cellcolor{green!60} \\ \hline
+                \end{array}$
+            }
+            \caption{}
+            \label{figure1}
+        \end{minipage}
+        \hfill
+        
+        \begin{minipage}[t]{0.3\textwidth}
+            \centering
+            \setlength{\tabcolsep}{1pt}
+            \renewcommand{\arraystretch}{0.7}
+            \resizebox{\textwidth}{!}{
+                $\begin{array}{|c|c|}
+                \hline
+                \cellcolor{red!60} & \cellcolor{blue!60} \\ \hline
+                \cellcolor{red!60} & \cellcolor{blue!60} \\ \hline
+                \cellcolor{green!60} & \cellcolor{green!60} \\ \hline
+                \end{array}$
+            }
+            \caption{}
+            \label{figure2}
+        \end{minipage}
+        \hfill
+
+        \begin{minipage}[t]{0.3\textwidth}
+            \centering
+            \setlength{\tabcolsep}{1pt}
+            \renewcommand{\arraystretch}{0.7}
+            \resizebox{\textwidth}{!}{
+                $\begin{array}{|c|c|}
+                \hline
+                \cellcolor{green!60} & \cellcolor{green!60} \\ \hline
+                \cellcolor{red!60} & \cellcolor{blue!60} \\ \hline
+                \cellcolor{red!60} & \cellcolor{blue!60} \\ \hline
+                \end{array}$
+            }
+            \caption{}
+            \label{figure3}
+        \end{minipage}
+    \end{figure}
+
+    It can also be explicitly shown that $f(4) = 11$.
+
+    \vspace{\baselineskip}
+    \noindent \textbf{Inductive Cases:}
+    \vspace{\baselineskip}
+    
+    Our inductive hypothesis is that $f(n) = 3f(n-2) + 2\sum_{i = 4}^{n}f(n-i)$ correctly counts the number of tilings on an $3 \times n$ grid. We will show that (by assuming $f(n-i)$ correctly counts the number of tilings on a $3 \times (n-i)$ grid for all $i \in \mathbb{N}$ and $n \geq i \geq 4$) there are $3f(n-2) + 2\sum_{i = 4}^{n}f(n-i)$ unique tilings of a $3 \times n$ grid.
+    
+    As shown above, $f(2) = 3$. For a \(3 \times n\) grid, columns $0$ and $1$ can be tiled \(3\) unique ways, leaving an untiled \(3 \times (n-2)\) grid. Assuming there are \(f(n-2)\) unique ways to tile a \(3 \times (n-2)\) grid, there are \(3\cdot f(n-2)\) unique ways to tile a \(3 \times n\) grid when the first two columns are tiled independently of the other columns. This accounts for the first term of $f(n)$.
+    
+    We claim that the next term, $2\sum_{i = 4}^{n}f(n-i)$, counts the tilings where there exists an \textit{offset shape}. An offset shape exists in a tiling whenever the tiling contains one of the $2$ following orientations:
+    
+    \begin{figure}[H]
+        \centering
+        \captionsetup{labelsep=none} % Suppress colon
+        \setlength{\tabcolsep}{1pt}
+        \renewcommand{\arraystretch}{0.8}
+        \resizebox{0.5\textwidth}{!}{
+        $\begin{array}{|c|c|c|c|}
+        \hline
+          \cellcolor{red!60} & \cellcolor{black!60} & \cellcolor{black!60} &  \\ \hline
+          \cellcolor{red!60} & \cellcolor{black!60} & \cellcolor{black!60} & \\\hline
+          \cellcolor{blue!60} & \cellcolor{blue!60} & & \\ \hline
+        \end{array}$
+        }
+    \caption{}
+    \label{figure4}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \centering
+        \captionsetup{labelsep=none} % Suppress colon
+        \setlength{\tabcolsep}{1pt}
+        \renewcommand{\arraystretch}{0.8}
+        \resizebox{0.5\textwidth}{!}{
+        $\begin{array}{|c|c|c|c|}
+        \hline
+          \cellcolor{blue!60} & \cellcolor{blue!60} &  &  \\ \hline
+          \cellcolor{red!60} & \cellcolor{black!60}& \cellcolor{black!60} & \\\hline
+          \cellcolor{red!60} & \cellcolor{black!60} & \cellcolor{black!60} & \\ \hline
+        \end{array}$
+        }
+    \caption{}
+    \label{figure5}
+    \end{figure}
+    
+    Notice that an offset shape exists whenever exactly two horizontal dominoes in consecutive rows (the gray tiles above) span columns $1$ and $2$. It can be shown that these dominoes force the subsequent placement of tiles up to (but not including) some column $m$ (for even $m$ and $n > m \geq 4$). 
+    
+    We call the \textbf{beginning} of this forced placement of tiles the \textit{initiation} of the offset shape (i.e., the red and blue tiles in the figures herein), and the \textbf{end} of this forced placement of dominoes the \textit{resolution} (i.e., the green and yellow tiles in the figures herein).
+    
+    For example, Figures ~\ref{figure6} and ~\ref{figure7}  (when $n = 6$) show the two possible offset shapes when the initiation of the offset shape has an orientation resembling an ``L''. By symmetry, two possible offset shapes exist when the initiation of the offset shape has the other orientation (e.g., Figure $5$).
+    
+    \begin{figure}[H]
+        \centering
+        \captionsetup{labelsep=none} % Suppress colon
+        \setlength{\tabcolsep}{1pt}
+        \renewcommand{\arraystretch}{0.8}
+        \resizebox{0.5\textwidth}{!}{
+        $\begin{array}{|c|c|c|c|c|c|}
+        \hline
+          \cellcolor{red!60} & \cellcolor{black!60} & \cellcolor{black!60} & \cellcolor{black!60} &\cellcolor{black!60} & \cellcolor{green!60}\\ \hline
+          \cellcolor{red!60} & \cellcolor{black!60} & \cellcolor{black!60} &\cellcolor{black!60} & \cellcolor{black!60} & \cellcolor{green!60}\\\hline
+          \cellcolor{blue!60} & \cellcolor{blue!60} & \cellcolor{black!60}& \cellcolor{black!60} &\cellcolor{yellow!60} & \cellcolor{yellow!60} \\ \hline
+    \end{array}$
+    }
+    \caption{}
+    \label{figure6}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \centering
+        \captionsetup{labelsep=none} % Suppress colon
+        \setlength{\tabcolsep}{1pt}
+        \renewcommand{\arraystretch}{0.8}
+        \resizebox{0.5\textwidth}{!}{
+        $\begin{array}{|c|c|c|c|c|c|}
+        \hline
+          \cellcolor{red!60} & \cellcolor{black!60} & \cellcolor{black!60} & \cellcolor{green!60} &  &\\ \hline
+          \cellcolor{red!60} & \cellcolor{black!60} & \cellcolor{black!60} &\cellcolor{green!60} & &\\\hline
+          \cellcolor{blue!60} & \cellcolor{blue!60} & \cellcolor{yellow!60} & \cellcolor{yellow!60} & &\\ \hline
+    \end{array}$
+    }
+    \caption{}
+    \label{figure7}
+    \end{figure}
+    
+    With these preliminaries in place, we can constructively count the tilings that contain an offset shape. Each term in the summation (indexed by $i$) has a one-to-one correspondence with the case where the offset shape resolves leaving $(n - i)$ columns untiled (e.g., the columns containing white grid squares in Figures ~\ref{figure6} and ~\ref{figure7}) -- these yet-to-be tiled columns can be tiled in exactly $f(n - i)$ ways. Since the offset shapes can take two initiation orientations, we multiply the summation by $2$ (by symmetry).
+
+    Notice that the tilings counted by these two terms are disjoint because the existence of an offset shape requires horizontal dominoes to span columns $1$ and $2$ (i.e., tilings counted in the second term) whereas the first term counts tilings where horizontal domino(es) span columns \(0\) and \(1\). Therefore, the total number of unique tilings of a \(3 \times n\) grid is equal to the sum of these two terms, which can be written as:
+    
+    \[f(n) = 3f(n-2) + 2\sum_{i = 4}^{n}f(n-i) \text{.}\]
+
+    Finally, \(f(n)\) can be re-written as \(f(n) = 4f(n-2) - f(n-4)\):
+
+    \begin{align*}
+        f(n) &= 3f(n-2) + 2\sum_{i = 4}^{n}f(n-i)\\
+        &= 3f(n-2) + 2f(n - 4) + 2\sum_{i = 4}^{n-2}f(n-2-i)\\
+        &= 3f(n-2) + \left(3f(n - 4) + 2\sum_{i = 4}^{n-2}f(n-2-i)\right) - f(n - 4)\\
+        &= 4f(n-2) - f(n-4)    
+    \end{align*}
+
+
+\end{proof}
+
+\end{document}
