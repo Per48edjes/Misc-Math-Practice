@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{hyperref} % do NOT set [ocgcolorlinks] here!
+\usepackage{nameref}
+\usepackage{xcolor}
+
+\newcommand{\claimname}{}
+\newtheorem*{claiminner}{\claimname}
+\newenvironment{claim}[1]
+ {\renewcommand{\claimname}{#1}\claiminner}
+ {\endclaiminner}
+
+\newtheorem{lemma}{Lemma}
+
+\newenvironment{lemmaproof}
+  {\renewcommand{\qedsymbol}{$\blacksquare$}\begin{proof}}
+  {\end{proof}}
+
+\title{$\aleph_{0}$ Weekly Problem}
+\author{Ravi Dayabhai \and Conrad Warren}
+\date{2025-02-18}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem}
+
+Define a sequence $\left( x_{n} \right)$ as follows:
+
+\[
+    x_{0} = 0,\ x_{n+1} = \sqrt{4 + 3x_{n}}
+\]
+
+\noindent
+Show that this sequence is convergent and find its limit.
+
+\section*{Solution}
+
+\begin{claim}{Claim}
+    The sequence \(\left( x_n \right)\) defined by \(x_0 = 0\) and \(x_{n+1} = \sqrt{4 + 3x_n}\) converges, and its limit is 4.
+\end{claim}
+
+\begin{proof}
+
+  We begin by first establishing that the sequence \(\left( x_n \right)\) is bounded.
+
+    \begin{lemma}[Boundedness]
+    \label{bounded-lemma}
+      For all \(n \geq 0\), then \(x_n \leq 4\).
+    \end{lemma}
+
+    \begin{lemmaproof}
+
+      We proceed by induction on $n$. The base case is true because \(x_{0} = 0 \leq 4\). 
+      For the inductive case, we assume \(x_n \leq 4\). Then,
+    \[
+    x_{n+1} = \sqrt{4 + 3x_n} \leq \sqrt{4 + 3 \cdot 4} = \sqrt{16} = 4.
+    \]
+    By induction, \(x_n \leq 4\) for all \(n \geq 0\).
+
+    \end{lemmaproof}
+
+  By the Monotone Convergence Theorem, since \(\left( x_n \right)\) is bounded above (as shown by Lemma \ref{bounded-lemma}) and monotonically increasing, it converges to some limit \(L\), which we know to be nonnegative.
+  Notice also that $f(x) = \sqrt{4 + 3x}$ is a continuous function preserving monotonicity (importantly, when $x$ is nonnegative). So, the continuity of $f$ and  $L = \lim_{n \to \infty} x_n = \lim_{n \to \infty} x_{n+1}$ gives: 
+      \[
+        L = \lim_{n \to \infty} x_{n+1} = \lim_{n \to \infty} f(x_{n}) = f\left(\lim_{n \to \infty} x_{n} \right) = f(L) = \sqrt{4 + 3L}
+      \]
+Squaring both sides,
+\[
+L^2 = 4 + 3L \implies L^2 - 3L - 4 = 0 \implies (L - 4)(L + 1) = 0.
+\]
+Therefore, \(L = 4\) or \(L = -1\). Since \(x_n \geq 0\), \(L = 4\).
+\end{proof}
+
+\end{document}
