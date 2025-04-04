@@ -21,4 +21,6 @@ I've been bad about preserving (and organizing) artifacts from my work on these 
 - [Fiddler on the Proof: 2024-05-17](https://gist.github.com/Per48edjes/b83ab3d1c6f05431b8cf73007efb0ab3)
 - [Fiddler on the Proof: 2024-05-03](https://gist.github.com/Per48edjes/195034d009cabdd8bd3322e7400ad17a)
 - [LeetCode 887. Super Egg Drop](https://gist.github.com/Per48edjes/301317d8af3f81cbf042981f5e0804aa)
-- [LeetCode 2870. Minimum Number of Operations to Make Array Empty](https://gist.github.com/Per48edjes/bae77fb512574b81d9df8bfd263c3df1) 
+- [LeetCode 2870. Minimum Number of Operations to Make Array Empty](https://gist.github.com/Per48edjes/bae77fb512574b81d9df8bfd263c3df1)
+
+  ...and a [giant digital whiteboard](https://lucid.app/lucidspark/930a8356-6f9c-4063-9fc7-b5e20a23dcd3/edit?invitationId=inv_fba541ac-312f-4527-95f0-a307546ec7f3) where solutions to many problems have been scratched out!
