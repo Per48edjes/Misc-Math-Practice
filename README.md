@@ -2,9 +2,9 @@
 
 Things that end up here are things that have nerd-sniped me. If you find a good problem, let's :pear:! It's one of my favorite things to do.
 
-## Related Links
+## Additional Related Links
 
-I've been bad about preserving (and organizing) artifacts from my work on these sorts of problems...but here's a rather incomplete inventory of related material.
+I've been bad about preserving (and organizing) artifacts from my work on these sorts of problems...but here's a rather incomplete inventory of related material in addition to what's contained herein.
 
 - [Jane Street Puzzle: November 2024](https://gist.github.com/Per48edjes/3bc289815191c4348711d977e8fd85fb)
 - [Fiddler on the Proof: 2024-10-27](https://www.overleaf.com/read/thfpmdtrxddt#cac114)
