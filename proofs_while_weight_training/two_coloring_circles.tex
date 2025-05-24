@@ -1,0 +1,47 @@
+\documentclass{theoremnote}
+
+\setauthors{Ravi Dayabhai \& Tyler Campana}
+\settitletext{Chord-cut Circles are $2$-colorable}
+\setdate{May 2025}
+
+\begin{document}
+
+\begin{ProblemStatement}
+  Prove that a circle cut by $n \in \mathbb{N}$ chords is $2$-colorable, i.e., the interior of a circle can be colored with at most $2$ colors such that no two regions sharing an edge are the same color.
+\end{ProblemStatement}
+
+\begin{ProofSolution}
+
+  \begin{proof}
+
+    We proceed by induction on the number of chords, $n$.
+
+    \begin{induction}
+    \basecase{
+      When $n = 0$, the circle is not cut by any chords, so we can color the entire circle with one color. (Thus, it is trivially $2$-colorable.) Similarly, if $n = 1$, we can color the two sub-regions formed by the chord with $2$ different colors.
+    }
+    \inductivestep{
+      Let $P(n)$ be the inductive hypothesis: a circle cut by $n$ chords is $2$-colorable. We want to show, assuming $P(n)$, that $P(n+1)$ holds, i.e., a circle cut by $n+1$ chords is also $2$-colorable.
+
+      Assume that $P(n)$ is true -- if we start with a circle cut by $n$ chords, we can color the regions formed by these chords with no more than $2$ colors.
+      Now, we add one more chord to the circle, so the circle is now cut by $n + 1$ chords. This chord will intersect some of the existing regions, so each region cut by the new chord will be divided into two sub-regions; however, now, these neighboring sub-regions share the same color.
+      Next, to maintain the condition that no two adjacent regions can have the same color (the ``invariant''), we \textbf{recolor all regions on one side of the new chord with their opposite color}. 
+      We can ensure that the invariant is not violated because:
+      \begin{itemize}
+        \item Every region \underline{on the unchanged side} of the new chord still has the same color as before, and this, original coloring satisfied the invariant (by the inductive hypothesis, $P(n)$).
+        \item \underline{On the recolored side} of the new chord: 
+        \begin{enumerate}
+          \item \label{case:cut} For each region split into two sub-regions by the new chord, the resulting sub-region on the recolored side is colored with the opposite color, maintaining the invariant along the new chord. 
+          \item The regions that were unaffected by the additional chord also satisfy the invariant because, while each switched colors, they respect the invariant among themselves. Also, the only recolored sub-regions they can possibly neighbor (from (\ref{case:cut})) also switched colors, so this side still satisfies the invariant. 
+        \end{enumerate}
+      \end{itemize}
+    }
+    We have shown that if $P(n)$ is true, then $P(n+1)$ is also true.
+    \end{induction}
+
+    Therefore, by induction, we conclude that a circle cut by $n$ chords is $2$-colorable.
+  \end{proof}
+
+\end{ProofSolution}
+
+\end{document}
