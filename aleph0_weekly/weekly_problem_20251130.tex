@@ -1,0 +1,127 @@
+\documentclass{article}
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{hyperref} % do NOT set [ocgcolorlinks] here!
+\usepackage{nameref}
+\usepackage{xcolor}
+
+\newtheorem{lemma}{Lemma}
+
+\newenvironment{lemmaproof}
+  {\renewcommand{\qedsymbol}{$\blacksquare$}\begin{proof}}
+  {\end{proof}}
+
+\title{$\aleph_{0}$ Weekly Problem}
+\author{Ravi Dayabhai}
+\date{2025-11-30}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem}
+
+Let $a_n$ be the number of terms in the sequence $2^{1}, 2^{2}, \ldots, 2^{n}$ which begin with digit 1. Prove that
+  \[
+    \log{2} - \frac{1}{n} < \frac{a_{n}}{n} < \log{2},
+  \]
+and, hence,
+  \[
+    \lim_{n \to \infty} \frac{a_{n}}{n} = \log{2} \approx 0.30103. 
+  \]
+
+\section*{Solution}
+
+  \begin{proof}
+
+  We first prove the following lemma, greatly simplifying the remainder of the proof.
+
+  \begin{lemma}
+  \label{lem:c-to-n-map}
+    Define $(s_{m}) := (2^{k})_{k=1}^{m}$, the sequence of the first $m$ integer powers of $2$. 
+    Also, let $S_{c}$ be the set of such sequences all having exactly $c \in \mathbb{N}$ terms whose leading digit is $1$.
+    If $(s_{m}) \in S_{c}$, then $c \log_{2}{10} < m < (c + 1) \log_{2}{10}$.
+  \end{lemma}
+
+\begin{lemmaproof}
+  Suppose that $(s_m) \in S_c$ for some $c \in \mathbb{N}$. We will show that
+  \[
+    c \log_2 10 < m < (c+1) \log_2 10.
+  \]
+
+  First, observe that for $2^q$ to have leading digit $1$, there must exist some $t \in \mathbb{N}$ such that
+  \[
+    10^t \le 2^q < 2 \cdot 10^t \implies t \log_2 10 \le q < t \log_2 10 + 1.
+  \]
+  For fixed $t$, the interval $[t \log_2 10,\,t \log_2 10 + 1)$ has length $1$, so it contains at most one integer $q$.
+
+  Let $j_1 < j_2 < \dots < j_c \le m$ be the exponents of the terms of $(s_m)$ that have leading digit $1$. For each $i$ there is some $t_i$ with
+  \[
+    t_i \log_2 10 \le j_i < t_i \log_2 10 + 1,
+  \]
+  and the intervals are mutually disjoint, so $t_1 < t_2 < \dots < t_c$. Also, $t_1 \ge 1$ since $2^4 = 16$ is the first positive integer power of $2$ with $1$ as its most significant digit in our sequence $(2^k)_{k \ge 1}$. Because $(t_i)_{i=1}^c$ is strictly increasing, we have $t_i \ge i$ for all $1 \le i \le c$, and hence
+  \[
+    j_i \ge t_i \log_2 10 \ge i \log_2 10.
+  \]
+  In particular, since $\log_2 10$ is irrational, we get
+  \[
+    m \ge j_c > c \log_2 10,
+  \]
+  so $m > c \log_2 10$.
+
+  To establish the upper bound, we first show that for every $t \in \mathbb{N}$ there is \emph{exactly one} exponent $q_t \in \mathbb{N}$ such that $2^{q_t}$ has leading digit $1$ and lies in the decade $[10^t,10^{t+1})$. Fix $t \in \mathbb{N}$ and define $q_t := \lceil t \log_2 10 \rceil$. Then
+  \[
+    t \log_2 10 \le q_t < t \log_2 10 + 1,
+  \]
+  so exponentiating base $2$ gives
+  \[
+    10^t \le 2^{q_t} < 2 \cdot 10^t,
+  \]
+  which shows that $2^{q_t}$ begins with digit $1$ in base $10$. Thus, for each $t$ there exists at least one such exponent $q_t$, and by the “at most one integer per interval” argument above, this $q_t$ is unique.
+
+  It follows that the sequence of all exponents $q \ge 1$ such that $2^q$ has leading digit $1$ is precisely $(q_t)_{t \ge 1}$, ordered increasingly, and the corresponding interval indices are $t_1 = 1, t_2 = 2, \dots$.
+  In particular,
+  \[
+    t_i = i \quad \text{for all } 1 \le i \le c+1.
+  \]
+  Therefore, $j_c \in [c \log_2 10, c \log_2 10 + 1)$ and $j_{c+1} \in [(c+1)\log_2 10, (c+1)\log_2 10 + 1)$. Since $m < j_{c+1}$ and $m, j_{c+1}$ are integers, we have
+  \[
+    m \le j_{c+1} - 1 < (c+1)\log_2 10,
+  \]
+  which proves $m < (c+1) \log_2 10$.
+
+  Combining the two inequalities yields
+  \[
+    c \log_2 10 < m < (c+1) \log_2 10,
+  \]
+  as desired.
+\end{lemmaproof}
+
+    Turning our attention to the original problem, it is sufficient to show that 
+    \[
+    a_{n} \log_{2}{10} < n < (a_{n} + 1) \log_{2}{10}
+    \]
+    for all $n \in \mathbb{N}$ because
+    \begin{align*}
+      \log{2} - \frac{1}{n} < \frac{a_{n}}{n} < \log{2} &\iff n \log{2} - 1  < a_{n} < n \log{2} \\
+                                                        &\iff \frac{n}{\log_{2}{10}} - 1 < a_{n} < \frac{n}{\log_{2}{10}} \\
+                                                        &\iff a_{n} \log_{2}{10} < n < (a_{n} + 1) \log_{2}{10}. \\
+    \end{align*}
+
+
+    Let $n \in \mathbb{N}$ be arbitrary. Then, $(s_{n})$ has $a_{n}$ terms whose leading digit is 1 and $(s_{n}) \in S_{a_{n}}$.
+    By Lemma $\ref{lem:c-to-n-map}$,
+    \[
+      a_{n} \log_{2}{10} < n < (a_{n} + 1)\log_{2}{10},
+    \]
+    as desired. Since $n$ is arbitrary, we can write 
+    \[
+      \forall n \in \mathbb{N}.\, \log{2} - \frac{1}{n} < \frac{a_{n}}{n} < \log{2}.
+    \]
+    By the \href{https://brilliant.org/wiki/squeeze-theorem/#statement-of-the-theorem-and-its-intuition}{Squeeze Theorem}, we immediately obtain
+    \[
+      \lim_{n \to \infty} \frac{a_{n}}{n} = \log{2} \approx 0.30103. 
+    \]
+
+  \end{proof}
+
+\end{document}
